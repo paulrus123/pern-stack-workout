@@ -1,12 +1,9 @@
-import  { useState } from 'react';
+import  { useEffect, useState } from 'react';
 
-export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises  }) {
-  const[checked, setChecked] = useState(false); 
+export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises, excerciseRecord  }) {
+  const [, setPostResult] = useState(null); 
 
   const fetchCurrentUsers = async () =>  {
-    if(checked) {
-      return;
-    }
     try {
       const response = await fetch('http://localhost:5000/workout/users', {
         method: 'GET',
@@ -18,7 +15,6 @@ export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises  }) {
         const userData = await response.json();
         OnFetchedUsers(userData);
         console.log('GET USERS request successful');
-        setChecked(true);
       } else {
         OnFetchedUsers(null);
         console.error('GET USERS request failed');
@@ -30,9 +26,6 @@ export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises  }) {
   };
 
   const fetchCurrentExcercises = async () =>  {
-    if(checked) {
-      return;
-    }
     try {
       const response = await fetch('http://localhost:5000/workout/excercises', {
         method: 'GET',
@@ -53,8 +46,44 @@ export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises  }) {
     }
   }
 
-  fetchCurrentUsers();
-  fetchCurrentExcercises();
+  const postNewExcerciseRecord = async (record) => {
+    if(record == null) {
+      console.log("Excercise Data null. Not posting.");
+      return;
+    }
 
-  return(<div></div>);
+    try {
+      const response = await fetch('http://localhost:5000/workout/singleSet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          session_id: record.session_id,
+          excercise: record.excercise,
+          reps: record.reps,
+          weight: record.weight
+        }),
+      });
+
+      if (response.ok) {
+        console.log('POST request successful');
+      } else {
+        console.error('POST request failed');
+      }
+    } catch (error) {
+      console.error('Error during POST request:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrentUsers();
+    fetchCurrentExcercises();
+  },[] );
+
+  useEffect(() => {
+    postNewExcerciseRecord(excerciseRecord)
+    .then((result) => setPostResult(result))
+    .catch((_error) => setPostResult(null));
+  },[excerciseRecord] )
 }

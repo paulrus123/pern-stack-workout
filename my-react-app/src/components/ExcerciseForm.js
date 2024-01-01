@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 
-const ExcerciseForm = ({  OnAdd, excerciseOptions  }) => {
+const ExcerciseForm = ({  OnAddRecord, excerciseOptions  }) => {
   const [session_id, setSessionId] = useState('');
   const [excercise, setExcercise] = useState('');
   const [reps, setReps] = useState('');
   const [weight, setWeight] = useState('');
 
   const handleAddClick = () => {
-    OnAdd({ session_id, excercise, reps, weight });
+    OnAddRecord({ session_id, excercise, reps, weight });
   };
 
   function mapList() {
     return excerciseOptions.map(option => {
         return <option key={option.excercise_id}>{option.excercise_name}</option>;
     })
-}
-
+  };
+  
   return (
     <div>
       <div>

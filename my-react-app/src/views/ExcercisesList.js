@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Excercise from '../components/Excercise';
 
 export default function ExcercisesList({excerciseOptions}) {
