@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 
-const ExcerciseForm = ({  OnAddRecord, excerciseOptions  }) => {
+interface ExcerciseOption {
+  excercise_id: string;
+  excercise_name: string;
+}
+
+interface ExcerciseFormProps {
+  OnAddRecord: (data: { session_id: string; excercise: string; reps: string; weight: string }) => void;
+  excerciseOptions: ExcerciseOption[];
+}
+
+const ExcerciseForm: React.FC<ExcerciseFormProps> = ({  OnAddRecord, excerciseOptions  }) => {
   const [session_id, setSessionId] = useState('');
   const [excercise, setExcercise] = useState('');
   const [reps, setReps] = useState('');
