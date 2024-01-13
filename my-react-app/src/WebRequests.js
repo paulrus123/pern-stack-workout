@@ -6,7 +6,7 @@ export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises, exce
 
   const fetchCurrentUsers = async () =>  {
     try {
-      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'users', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'workout/users', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises, exce
 
   const fetchCurrentExcercises = async () =>  {
     try {
-      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'excercises', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'workout/excercises', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
