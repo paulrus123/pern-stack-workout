@@ -79,7 +79,7 @@ export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises, exce
   useEffect(() => {
     fetchCurrentUsers();
     fetchCurrentExcercises();
-  },[] );
+  } );
 
   useEffect(() => {
     postNewExcerciseRecord(excerciseRecord)
