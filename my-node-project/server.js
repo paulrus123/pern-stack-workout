@@ -11,13 +11,13 @@ app.use(express.json());
 
 // Connect to dbs
 // ConnectToMongoDb();
-// ConnectToPostgres((err) => {
-//     if (err) {
-//         console.error('Failed to connect to PostgreSQL:', err);
-//     } else {
-//         console.log('Successfully connected to PostgreSQL');
-//     }
-// });
+ConnectToPostgres((err) => {
+    if (err) {
+        console.error('Failed to connect to PostgreSQL:', err);
+    } else {
+        console.log('Successfully connected to PostgreSQL');
+    }
+});
 
 // include route files
 const usersRoute = require('./routes/users');
