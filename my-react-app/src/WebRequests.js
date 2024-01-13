@@ -1,11 +1,12 @@
 import  { useEffect, useState } from 'react';
 
 export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises, excerciseRecord  }) {
+  
   const [, setPostResult] = useState(null); 
 
   const fetchCurrentUsers = async () =>  {
     try {
-      const response = await fetch('http://localhost:5000/workout/users', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'users', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises, exce
 
   const fetchCurrentExcercises = async () =>  {
     try {
-      const response = await fetch('http://localhost:5000/workout/excercises', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'excercises', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ export default function WebRequests({  OnFetchedUsers, OnFetchedExcercises, exce
     }
 
     try {
-      const response = await fetch('http://localhost:5000/workout/singleSet', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + 'workout/singleSet', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
