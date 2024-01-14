@@ -25,3 +25,7 @@ npm run start
 ```
 
 Note: this assumes postgres db is available for backend to communicate to. 
+
+
+## Deployment Setup
+Frontend is hosted by https://www.netlify.com/
