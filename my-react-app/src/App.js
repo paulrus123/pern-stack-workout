@@ -13,7 +13,7 @@ export default function App() {
 
   useEffect(() => {
     const updateUserProfileAndLoadPage = async () => {
-      await updateUserProfileInDB(user);
+      await putUser(user);
       await fetchCurrentUsers((users) => {
         setUsers(users);
       });
@@ -23,7 +23,7 @@ export default function App() {
     };
 
     if (isAuthenticated) {
-      putUser(user);
+      updateUserProfileAndLoadPage();
     }
   }, [isAuthenticated, user]);
 
