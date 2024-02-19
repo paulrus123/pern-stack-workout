@@ -24,7 +24,7 @@ Start the react app:
 npm run start
 ```
 
-Note: this assumes postgres db is available for backend to communicate to. 
+Note: this assumes postgres db is available for backend to communicate to.
 
 
 ## Deployment Setup
